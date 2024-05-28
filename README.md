@@ -1,5 +1,7 @@
 # Pokémon Cafe Reservation Notifier
 
+[![build](https://github.com/zhxie/pokemon-cafe-reservation-notifier/actions/workflows/build.yaml/badge.svg)](https://github.com/zhxie/pokemon-cafe-reservation-notifier/actions/workflows/build.yaml)
+
 Pokémon Cafe Reservation Notifier is a tool designed to help users book Pokémon Cafe and fight against scalpers.
 
 _Pokémon Cafe Reservation Notifier does not directly book Pokémon Cafe for you."_
