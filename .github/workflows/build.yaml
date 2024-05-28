@@ -1,0 +1,54 @@
+name: Build
+
+on:
+  pull_request:
+    branches:
+      - master
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [macos-14, windows-latest]
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node.js 18
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+          cache: "yarn"
+
+      - name: Cache node modules
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-build-node-modules-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-build-node-modules-
+
+      - name: Install dependencies
+        run: yarn
+
+      - name: Build
+        run: |
+          if [[ $(uname) == "Darwin" ]]; then
+            echo "PLATFORM=macos" >> "$GITHUB_ENV"
+          else
+            echo "PLATFORM=windows" >> "$GITHUB_ENV"
+          fi
+          yarn make
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: pokemon-cafe-reservation-notifier-${{ env.PLATFORM }}
+          path: |
+            ./out/make/
