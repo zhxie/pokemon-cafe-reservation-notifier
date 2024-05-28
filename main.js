@@ -49,7 +49,7 @@ const inject = (number, date, endpoint) => {
       }
       setTimeout(() => {
         window.location.href = "/";
-      }, 1000);
+      }, 10000);
       return;
     }
 
@@ -71,7 +71,7 @@ const inject = (number, date, endpoint) => {
     // About email address authentication
     const button = document.querySelector("a");
     button.click();
-  }, 1000);
+  }, 2000);
 };
 
 app.whenReady().then(() => {
