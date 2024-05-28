@@ -13,6 +13,14 @@ _Pokémon Cafe Reservation Notifier does not directly book Pokémon Cafe for you
 3. Fill in every input in the app.
 4. Start and wait for the push notification.
 
+## FAQ
+
+### App is damaged and you should move it to trash on macOS
+
+```sh
+xattr -cr /Applications/pokemon-cafe-reservation-notifier.app
+```
+
 ## License
 
 Pokémon Cafe Reservation Notifier is licensed under [the MIT License](/LICENSE).
