@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html class="center" lang="en" style="height: 100%">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Pokémon Cafe Reservation Notifier</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@4.11.1/dist/full.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="index.js" defer></script>
+    <style>
+      .center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .element {
+        width: 300px;
+      }
+    </style>
+  </head>
+  <body class="center" style="height: 100%">
+    <div class="center" style="flex-direction: column">
+      <img
+        class="element mx-2 my-2"
+        src="https://www.pokemoncenter-online.com/cafe/common/img/sitelogo.png"
+      />
+      <select id="place" class="select select-bordered mx-2 mb-2 element">
+        <option disabled selected>Place</option>
+        <option selected="selected">Shinsaibashi, Osaka</option>
+      </select>
+      <select id="number" class="select select-bordered mx-2 mb-2 element">
+        <option disabled selected>Number of Guests</option>
+        <option selected="selected">1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+        <option>6</option>
+        <option>7</option>
+        <option>8</option>
+      </select>
+      <input
+        id="date"
+        class="input input-bordered element mx-2 mb-2"
+        type="text"
+        placeholder="YYYY-MM-DD"
+      />
+      <div
+        class="tooltip"
+        data-tip="
+        First, you need to install Bark on your phone. Then, click on the cloud icon at the top right corner of Bark, select a server and copy the address and key, and finally paste it into the input here."
+      >
+        <input
+          id="endpoint"
+          class="input input-bordered element mx-2 mb-2"
+          type="text"
+          placeholder="Bark API Endpoint"
+        />
+      </div>
+      <button id="start" class="btn element mx-2 mb-2">Start</button>
+    </div>
+  </body>
+</html>
