@@ -38,17 +38,12 @@ jobs:
         run: yarn
 
       - name: Build
-        run: |
-          if [[ $(uname) == "Darwin" ]]; then
-            echo "PLATFORM=macos" >> "$GITHUB_ENV"
-          else
-            echo "PLATFORM=windows" >> "$GITHUB_ENV"
-          fi
-          yarn make
+        run: yarn make
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: pokemon-cafe-reservation-notifier-${{ env.PLATFORM }}
+          name: pokemon-cafe-reservation-notifier-${{ runner.os }}
           path: |
-            ./out/make/
+            ./out/make/zip/darwin/arm64/*.zip
+            ./out/make/zip/win32/x64/*.zip
