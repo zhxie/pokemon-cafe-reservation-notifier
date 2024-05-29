@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain, Menu } = require("electron");
+const { app, BrowserWindow, ipcMain } = require("electron");
 const path = require("path");
 
 const createAppWindow = () => {
@@ -9,6 +9,9 @@ const createAppWindow = () => {
       preload: path.join(__dirname, "preload.js"),
     },
   });
+
+  win.setAutoHideMenuBar(true);
+  win.setMenuBarVisibility(false);
 
   win.loadFile("index.html");
 };
@@ -81,8 +84,6 @@ const inject = (number, date, endpoint) => {
     }, 10000);
   }, 2000);
 };
-
-Menu.setApplicationMenu(null);
 
 app.whenReady().then(() => {
   createAppWindow();
