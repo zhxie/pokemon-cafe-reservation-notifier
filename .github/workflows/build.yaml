@@ -40,7 +40,11 @@ jobs:
       - name: Build
         run: yarn make
 
-      - name: Post-Build
+      - name: Post-Build (Windows)
+        if: runner.os == 'Windows'
+        run: mv out/make/zip/win32/x64/*.zip out/make/
+
+      - name: Post-Build (macOS)
         if: runner.os == 'macOS'
         run: mv out/make/PCRN.dmg out/make/pokemon-cafe-reservation-notifier.dmg
 
@@ -49,4 +53,5 @@ jobs:
         with:
           name: pokemon-cafe-reservation-notifier-${{ runner.os }}
           path: |
-            out/make/
+            out/make/*.dmg
+            out/make/*.zip
