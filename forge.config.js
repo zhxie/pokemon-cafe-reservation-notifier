@@ -11,6 +11,7 @@ module.exports = {
     {
       name: "@electron-forge/maker-dmg",
       config: {
+        name: "PCRN",
         format: "ULFO",
       },
     },
