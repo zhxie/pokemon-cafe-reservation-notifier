@@ -37,7 +37,7 @@ const inject = (number, date, endpoint) => {
     // Check capacity.
     const div = document.querySelector("div[data-date]");
     if (div) {
-      const data = data.getAttribute("data-date");
+      const data = div.getAttribute("data-date");
       const capacity = JSON.parse(data)[number][date] ?? 0;
       if (capacity) {
         fetch(
