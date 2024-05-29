@@ -45,4 +45,5 @@ jobs:
         with:
           name: pokemon-cafe-reservation-notifier-${{ runner.os }}
           path: |
-            ./out/make/zip/**/*.zip
+            ./out/*.exe
+            ./out/*.dmg
