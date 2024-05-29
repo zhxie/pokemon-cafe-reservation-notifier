@@ -40,18 +40,17 @@ jobs:
       - name: Build
         run: yarn make
 
-      - name: Post-Build (Windows)
+      - name: Post-Build
         if: runner.os == 'Windows'
-        run: mv out/make/zip/win32/x64/*.zip out/make/
-
-      - name: Post-Build (macOS)
-        if: runner.os == 'macOS'
-        run: mv out/make/PCRN.dmg out/make/pokemon-cafe-reservation-notifier.dmg
+        run: |
+          mkdir build
+          mv out/*/* build/
+          mv build/LICENSE build/LICENSE.electron
+          cp LICENSE build/LICENSE
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
           name: pokemon-cafe-reservation-notifier-${{ runner.os }}
           path: |
-            out/make/*.dmg
-            out/make/*.zip
+            build/

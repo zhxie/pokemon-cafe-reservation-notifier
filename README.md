@@ -17,7 +17,7 @@ _Pokémon Cafe Reservation Notifier does not directly book Pokémon Cafe for you
 
 ```sh
 yarn
-yarn make
+yarn package
 ```
 
 ## FAQ
