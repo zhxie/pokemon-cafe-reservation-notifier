@@ -38,7 +38,7 @@ jobs:
         run: yarn
 
       - name: Build
-        run: yarn make
+        run: yarn package
 
       - name: Post-Build
         if: runner.os == 'Windows'
