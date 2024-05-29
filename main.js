@@ -34,11 +34,11 @@ const createCafeWindow = (number, date, endpoint) => {
 
 const inject = (number, date, endpoint) => {
   setTimeout(() => {
-    // Check seats.
-    const data = document.querySelector("div[data-date]");
-    if (data) {
-      const seats = data.getAttribute("data-date");
-      const capacity = JSON.parse(seats)[number][date] ?? 0;
+    // Check capacity.
+    const div = document.querySelector("div[data-date]");
+    if (div) {
+      const data = div.getAttribute("data-date");
+      const capacity = JSON.parse(data)[number][date] ?? 0;
       if (capacity) {
         fetch(
           `${endpoint.replace(
@@ -68,9 +68,17 @@ const inject = (number, date, endpoint) => {
       return;
     }
 
-    // About email address authentication
+    // About email address authentication.
     const button = document.querySelector("a");
-    button.click();
+    if (button) {
+      button.click();
+      return;
+    }
+
+    // Error.
+    setTimeout(() => {
+      window.location.reload();
+    }, 10000);
   }, 2000);
 };
 
