@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain } = require("electron");
+const { app, BrowserWindow, ipcMain, Menu } = require("electron");
 const path = require("path");
 
 const createAppWindow = () => {
@@ -10,7 +10,6 @@ const createAppWindow = () => {
     },
   });
 
-  win.setAutoHideMenuBar(true);
   win.loadFile("index.html");
 };
 
@@ -24,7 +23,6 @@ const createCafeWindow = (number, date, endpoint) => {
     },
   });
 
-  win.setAutoHideMenuBar(true);
   win.loadURL("https://osaka.pokemon-cafe.jp/reserve/step1");
 
   win.webContents.on("did-finish-load", () => {
@@ -75,6 +73,8 @@ const inject = (number, date, endpoint) => {
     button.click();
   }, 2000);
 };
+
+Menu.setApplicationMenu(null);
 
 app.whenReady().then(() => {
   createAppWindow();
