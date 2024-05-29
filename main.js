@@ -10,6 +10,7 @@ const createAppWindow = () => {
     },
   });
 
+  win.setAutoHideMenuBar(true);
   win.loadFile("index.html");
 };
 
@@ -23,6 +24,7 @@ const createCafeWindow = (number, date, endpoint) => {
     },
   });
 
+  win.setAutoHideMenuBar(true);
   win.loadURL("https://osaka.pokemon-cafe.jp/reserve/step1");
 
   win.webContents.on("did-finish-load", () => {
