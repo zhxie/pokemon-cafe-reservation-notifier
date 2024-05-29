@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain } = require("electron");
+const { app, BrowserWindow, ipcMain, Menu } = require("electron");
 const path = require("path");
 
 const createAppWindow = () => {
@@ -81,6 +81,8 @@ const inject = (number, date, endpoint) => {
     }, 10000);
   }, 2000);
 };
+
+Menu.setApplicationMenu(null);
 
 app.whenReady().then(() => {
   createAppWindow();

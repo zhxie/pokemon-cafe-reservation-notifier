@@ -3,6 +3,7 @@ const { FuseV1Options, FuseVersion } = require("@electron/fuses");
 
 module.exports = {
   packagerConfig: {
+    name: "Pokémon Cafe Reservation Notifier",
     asar: true,
   },
   rebuildConfig: {},
