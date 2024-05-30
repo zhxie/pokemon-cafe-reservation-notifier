@@ -8,39 +8,17 @@
   "license": "MIT",
   "scripts": {
     "start": "electron-forge start",
-    "package": "electron-forge package",
-    "make": "electron-forge make"
-  },
-  "dependencies": {
-    "electron-squirrel-startup": "^1.0.1"
+    "package": "electron-forge package"
   },
   "devDependencies": {
     "@electron-forge/cli": "^7.4.0",
-    "@electron-forge/maker-dmg": "^7.4.0",
-    "@electron-forge/maker-zip": "^7.4.0",
     "electron": "^30.0.8"
   },
   "config": {
     "forge": {
       "packagerConfig": {
         "asar": true
-      },
-      "rebuildConfig": {},
-      "makers": [
-        {
-          "name": "@electron-forge/maker-dmg",
-          "config": {
-            "name": "PCRN",
-            "format": "ULFO"
-          }
-        },
-        {
-          "name": "@electron-forge/maker-zip",
-          "platforms": [
-            "win32"
-          ]
-        }
-      ]
+      }
     }
   }
 }
