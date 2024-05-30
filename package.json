@@ -1,5 +1,6 @@
 {
   "name": "pokemon-cafe-reservation-notifier",
+  "productName": "Pokemon Cafe Reservation Notifier",
   "version": "0.1.0",
   "description": "A tool designed to help users book Pokémon Cafe and fight against scalpers.",
   "main": "main.js",

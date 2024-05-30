@@ -27,6 +27,8 @@ const createCafeWindow = (domain, number, date, endpoint) => {
     },
   });
 
+  win.setAutoHideMenuBar(true);
+  win.setMenuBarVisibility(false);
   win.loadURL(`https://${domain}.pokemon-cafe.jp/reserve/step1`);
 
   win.webContents.on("did-finish-load", () => {
