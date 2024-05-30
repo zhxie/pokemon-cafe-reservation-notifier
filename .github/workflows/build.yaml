@@ -48,7 +48,7 @@ jobs:
           cp LICENSE build/LICENSE
 
       - name: Preserve permissions
-        if: runner.os != "Windows"
+        if: runner.os != 'Windows'
         run: |
           tar -cvf build.tar build/
 
