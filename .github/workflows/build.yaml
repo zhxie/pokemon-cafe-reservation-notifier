@@ -51,19 +51,12 @@ jobs:
         if: runner.os != 'Windows'
         run: |
           tar -cvf build.tar build/
+          rm -r build
 
-      - name: Upload build artifacts (Windows)
-        if: runner.os == 'Windows'
-        uses: actions/upload-artifact@v4
-        with:
-          name: pokemon-cafe-reservation-notifier-${{ runner.os }}
-          path: |
-            build/
-
-      - name: Upload build artifacts (non-Windows)
-        if: runner.os != 'Windows'
+      - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
           name: pokemon-cafe-reservation-notifier-${{ runner.os }}
           path: |
             build.tar
+            build/
