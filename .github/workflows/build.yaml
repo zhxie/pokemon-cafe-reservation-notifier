@@ -40,15 +40,22 @@ jobs:
       - name: Build
         run: yarn package
 
-      - name: Post-Build
+      - name: Package
         run: |
           mkdir build
           mv out/*/* build/
           mv build/LICENSE build/LICENSE.electron
           cp LICENSE build/LICENSE
 
+      - name: Preserve permissions
+        if: runner.os != "Windows"
+        run: |
+          tar -cvf build.tar build/
+
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
           name: pokemon-cafe-reservation-notifier-${{ runner.os }}
-          path: build/
+          path: |
+            build.tar
+            build/
