@@ -16,7 +16,7 @@ const createAppWindow = () => {
   win.loadFile("index.html");
 };
 
-const createCafeWindow = (number, date, endpoint) => {
+const createCafeWindow = (domain, number, date, endpoint) => {
   const win = new BrowserWindow({
     width: 800,
     height: 600,
@@ -27,11 +27,11 @@ const createCafeWindow = (number, date, endpoint) => {
     },
   });
 
-  win.loadURL("https://osaka.pokemon-cafe.jp/reserve/step1");
+  win.loadURL(`https://${domain}.pokemon-cafe.jp/reserve/step1`);
 
   win.webContents.on("did-finish-load", () => {
     win.webContents.executeJavaScript(
-      `window.electron.inject("${number}", "${date}", "${endpoint}");`
+      `window.electron.inject("${domain}", "${number}", "${date}", "${endpoint}");`
     );
   });
 };
@@ -40,6 +40,6 @@ app.whenReady().then(() => {
   createAppWindow();
 });
 
-ipcMain.on("start", (_, number, date, endpoint) => {
-  createCafeWindow(number, date, endpoint);
+ipcMain.on("start", (_, domain, number, date, endpoint) => {
+  createCafeWindow(domain, number, date, endpoint);
 });

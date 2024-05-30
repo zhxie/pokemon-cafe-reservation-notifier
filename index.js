@@ -12,9 +12,24 @@ document.getElementById("date").value = now
 
 const button = document.getElementById("start");
 button.addEventListener("click", () => {
+  const place = document.getElementById("place").value;
   const number = document.getElementById("number").value;
   const date = document.getElementById("date").value;
   const endpoint = document.getElementById("endpoint").value;
+
+  switch (place) {
+    case "Nihonbashi, Tokyo":
+      domain = "reserve";
+      break;
+    case "Shinsaibashi, Osaka":
+      domain = "osaka";
+      break;
+    default:
+      alert(
+        "The place needs to be either Nihonbashi, Tokyo or Shinsaibashi, Osaka."
+      );
+      return;
+  }
 
   if (parseInt(number) < 1 || parseInt(number) > 8) {
     alert("The number of Guests needs to be between 1 and 8.");
@@ -38,5 +53,5 @@ button.addEventListener("click", () => {
     return;
   }
 
-  window.electron.start(number, date, endpoint);
+  window.electron.start(domain, number, date, endpoint);
 });

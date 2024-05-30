@@ -4,7 +4,7 @@ const TRIGGER_DELAY = 2000;
 const RELOAD_INTERVAL = 10000;
 
 contextBridge.exposeInMainWorld("electron", {
-  inject: (number, date, endpoint) => {
+  inject: (domain, number, date, endpoint) => {
     setTimeout(() => {
       // Check capacity.
       const div = document.querySelector("div[data-date]");
@@ -16,7 +16,7 @@ contextBridge.exposeInMainWorld("electron", {
             `${endpoint.replace(
               /\/$/,
               ""
-            )}/Pokémon%20Cafe%20Reservation%20Notifier/Here%20is%20a%20seat.%20Tap%20here%20to%20reserve.?url=https://osaka.pokemon-cafe.jp/`
+            )}/Pokémon%20Cafe%20Reservation%20Notifier/Here%20is%20a%20seat.%20Tap%20here%20to%20reserve.?url=https://${domain}.pokemon-cafe.jp/`
           );
         }
         setTimeout(() => {

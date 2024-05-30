@@ -1,6 +1,6 @@
 const { contextBridge, ipcRenderer } = require("electron");
 
 contextBridge.exposeInMainWorld("electron", {
-  start: (number, date, endpoint) =>
-    ipcRenderer.send("start", number, date, endpoint),
+  start: (domain, number, date, endpoint) =>
+    ipcRenderer.send("start", domain, number, date, endpoint),
 });
