@@ -21,6 +21,7 @@ const createCafeWindow = (number, date, endpoint) => {
     width: 800,
     height: 600,
     webPreferences: {
+      preload: path.join(__dirname, "inject.js"),
       nodeIntegration: true,
       webSecurity: false,
     },
@@ -30,59 +31,9 @@ const createCafeWindow = (number, date, endpoint) => {
 
   win.webContents.on("did-finish-load", () => {
     win.webContents.executeJavaScript(
-      `window.inject = ${inject.toString()}; inject("${number}", "${date}", "${endpoint}");`
+      `window.electron.inject("${number}", "${date}", "${endpoint}");`
     );
   });
-};
-
-const inject = (number, date, endpoint) => {
-  setTimeout(() => {
-    // Check capacity.
-    const div = document.querySelector("div[data-date]");
-    if (div) {
-      const data = div.getAttribute("data-date");
-      const capacity = JSON.parse(data)[number][date] ?? 0;
-      if (capacity) {
-        fetch(
-          `${endpoint.replace(
-            /\/$/,
-            ""
-          )}/Pokémon%20Cafe%20Reservation%20Notifier/Here%20is%20a%20seat.%20Tap%20here%20to%20reserve.?url=https://osaka.pokemon-cafe.jp/`
-        );
-      }
-      setTimeout(() => {
-        window.location.href = "/";
-      }, 10000);
-      return;
-    }
-
-    // Table reservation / Number of guests.
-    const select = document.querySelector("select");
-    if (select) {
-      select.selectedIndex = number;
-      document.forms[0].submit();
-      return;
-    }
-
-    // Please confirm.
-    const input = document.querySelector("input");
-    if (input) {
-      window.location.href = "/reserve/auth_confirm";
-      return;
-    }
-
-    // About email address authentication.
-    const button = document.querySelector("a");
-    if (button) {
-      button.click();
-      return;
-    }
-
-    // Error.
-    setTimeout(() => {
-      window.location.reload();
-    }, 10000);
-  }, 2000);
 };
 
 app.whenReady().then(() => {
