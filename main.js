@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain } = require("electron");
+const { app, BrowserWindow, ipcMain, powerSaveBlocker } = require("electron");
 const path = require("path");
 
 const createAppWindow = () => {
@@ -35,6 +35,11 @@ const createCafeWindow = (domain, number, date, endpoint) => {
     win.webContents.executeJavaScript(
       `window.electron.inject("${domain}", "${number}", "${date}", "${endpoint}");`
     );
+  });
+
+  const lock = powerSaveBlocker.start("prevent-display-sleep");
+  win.on("close", () => {
+    powerSaveBlocker.stop(lock);
   });
 };
 
