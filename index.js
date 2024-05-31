@@ -10,13 +10,18 @@ document.getElementById("date").value = now
   .toISOString()
   .split("T")[0];
 
+const endpoint = document.getElementById("endpoint");
+endpoint.addEventListener("input", () => {
+  endpoint.classList.remove("input-error");
+});
+
 const button = document.getElementById("start");
 button.addEventListener("click", () => {
   const place = document.getElementById("place").value;
   const number = document.getElementById("number").value;
   const date = document.getElementById("date").value;
-  const endpoint = document.getElementById("endpoint").value;
 
+  let domain = "";
   switch (place) {
     case "Nihonbashi, Tokyo":
       domain = "reserve";
@@ -25,33 +30,14 @@ button.addEventListener("click", () => {
       domain = "osaka";
       break;
     default:
-      alert(
-        "The place needs to be either Nihonbashi, Tokyo or Shinsaibashi, Osaka."
-      );
-      return;
+      throw new Error(`unexpected place ${place}`);
   }
 
-  if (parseInt(number) < 1 || parseInt(number) > 8) {
-    alert("The number of Guests needs to be between 1 and 8.");
-    return;
-  }
-  const components = date.split("-");
-  if (
-    components.length !== 3 ||
-    components[0].length !== 4 ||
-    Number.isInteger(components[0]) ||
-    components[1].length !== 2 ||
-    Number.isInteger(components[1]) ||
-    components[2].length !== 2 ||
-    Number.isInteger(components[2])
-  ) {
-    alert("The date needs to be in the format YYYY-MM-DD.");
-    return;
-  }
-  if (endpoint.length === 0) {
+  if (endpoint.value.length === 0) {
+    endpoint.classList.add("input-error");
     alert("The endpoint cannot be empty.");
     return;
   }
 
-  window.electron.start(domain, number, date, endpoint);
+  window.electron.start(domain, number, date, endpoint.value);
 });
